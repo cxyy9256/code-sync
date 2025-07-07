@@ -1,26 +1,32 @@
 class RandomizedSet(object):
 
     def __init__(self):
-        
+        self.val_to_idx = {} # key: val, val = idx, important for running in O(1)
+        self.values = []
 
-    def insert(self, val):
-        """
-        :type val: int
-        :rtype: bool
-        """
-        
+    def insert(self, val: int) -> bool:
+        if val in self.val_to_idx:
+            return False
+        self.val_to_idx[val] = len(self.values)
+        self.values.append(val)
+        return True
+    
+    def remove(self, val: int) -> bool:
+        if val not in self.val_to_idx:
+            return False
+        idx_to_remove = self.val_to_idx[val]
+        last_element = self.values[-1]
 
-    def remove(self, val):
-        """
-        :type val: int
-        :rtype: bool
-        """
-        
+        self.values[idx_to_remove] = last_element
+        self.val_to_idx[last_element] = idx_to_remove
 
-    def getRandom(self):
-        """
-        :rtype: int
-        """
+        self.values.pop()
+        del self.val_to_idx[val]
+
+        return True
+
+    def getRandom(self) -> int:
+        return random.choice(self.values) 
         
 
 
