@@ -4,14 +4,14 @@ class RandomizedSet(object):
         self.val_to_idx = {} # key: val, val = idx, important for running in O(1)
         self.values = []
 
-    def insert(self, val: int) -> bool:
+    def insert(self, val):
         if val in self.val_to_idx:
             return False
         self.val_to_idx[val] = len(self.values)
         self.values.append(val)
         return True
     
-    def remove(self, val: int) -> bool:
+    def remove(self, val):
         if val not in self.val_to_idx:
             return False
         idx_to_remove = self.val_to_idx[val]
@@ -25,7 +25,7 @@ class RandomizedSet(object):
 
         return True
 
-    def getRandom(self) -> int:
+    def getRandom(self):
         return random.choice(self.values) 
         
 
