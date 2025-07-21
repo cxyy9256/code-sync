@@ -53,3 +53,17 @@ class Solution(object):
 
         dfs([endWord], endWord)
         return result
+
+        # this is faster than original solution in the DFS forward, Explores many paths trying to reach endWord
+        # Forward DFS from hit has to explore every path until it finds cog. Even if you use BFS to build the graph, your DFS might wander down many forward paths that don’t lead to cog, especially when the graph is large or dense.
+        # You never explore invalid or dead-end paths (no wasted DFS branches)
+        # foward one you explore a lot of waster branches
+
+        # if wordlist was wordList = ["hot","dot","dog","lot","log","cog", "hog", "bog", "pog"]
+        '''
+ you would explore this
+        hit → hot → dot → dog → hog 
+        hit → hot → dot → bog 
+
+        hit → hot → lot → log → pog 
+        '''
